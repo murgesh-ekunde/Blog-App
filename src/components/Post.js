@@ -1,18 +1,24 @@
+import { formatISO9075 } from 'date-fns'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-function Post() {
+function Post({_id, title, summary, cover, content, createdAt,author}) {
   return (
     <div className="post">
-    <div className="image">
-    <img src="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_1200/https://therootdroid.com/wp-content/uploads/2022/10/Thumbnails.png" alt="" />
-    </div>
+      <div className="image">
+        <Link to={`/post/${_id}`}>
+           <img src={'http://localhost:4000/'+cover} alt="" />
+        </Link>
+      </div>
     <div className="text">
-    <h2>Multi-Cloud Architecture Obvious Challenges and Benefits</h2>
-    <p className="info">
-      <a className="author">Murgesh Ekunde</a>
-      <time>2023-02-23 16:45</time>
-    </p>
-    <p className="summary">A multi-cloud architecture is a cloud computing environment that uses multiple clouds from different providers.</p>
+    <Link to={`/post/${_id}`}>
+      <h2>{title}</h2>
+    </Link>
+      <p className="info">
+        <a className="author"> {author.username} </a>
+        <time>{formatISO9075(new Date(createdAt))}</time>
+      </p>
+      <p className="summary">{summary}</p>
     </div>
   </div>
   )
