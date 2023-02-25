@@ -1,7 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css'
-import UserContextProvider, {UserContext} from '../UserContext';
+import  {UserContext} from '../UserContext';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import CreateIcon from '@mui/icons-material/Create';
+import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+
 
 function Header() {
   const {setUserInfo, userInfo} = useContext(UserContext)
@@ -18,24 +24,26 @@ function Header() {
   const username = userInfo?.username;
   function logout() {
     fetch('http://localhost:4000/logout',{
-      credentials:'include',
       method:"POST",
+      credentials:'include',
     }) 
     setUserInfo(null);
   }
+
   return (
     <header>
         <Link to="/" className="logo">My Blogs</Link>
         <nav>
           {username && (
             <>
-            <Link to="create"> Create New Post </Link>
-            <a onClick={logout}>Logout</a>
+            <AccountCircleIcon />{username}
+            <Link className='button' to="create"> <CreateIcon /> Create New Post </Link>
+            <a className='button' onClick={logout}> <LogoutIcon />Logout</a>
             </>
           )}{!username &&(
             <>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <Link className='button' to="/login"> <LoginIcon /> Login </Link>
+            <Link className='button' to="/register"> <HowToRegIcon /> Register </Link>
             </>
           )}
           

@@ -1,6 +1,7 @@
 *{
   box-sizing: border-box;
 }
+
 body {
   color: #222;
 }
@@ -17,15 +18,28 @@ main{
 
 header {
   display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
   justify-content: space-between;
-  margin-top: 20px;;
   margin-bottom: 15px;
   align-items: center;
+  box-shadow: 0 5px 3px rgba(149, 157, 165, 0.2) ;
 }
 
 header a{
   text-decoration: none;
   color: inherit;
+}
+
+header a.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 10px;
+  border: 1px solid #333;
+  border-radius: 5px;
 }
 
 header a.logo{
@@ -35,10 +49,13 @@ header a.logo{
 
 header nav{
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 15px
 }
 
 div.post{
+  background-color: #ddd;
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
