@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import Editor from "../components/Editor";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
+import { API } from "../data";
 
 function CreatePost() {
   const [title,setTitle] = useState('');
@@ -10,6 +11,7 @@ function CreatePost() {
   const [content,setContent] = useState('');
   const [files, setFiles] = useState('');
   const [redirect, setRedirect] = useState(false);
+
   async function createNewPost(ev) {
     const data = new FormData();
     data.set('title', title);
@@ -17,7 +19,7 @@ function CreatePost() {
     data.set('content', content);
     data.set('file', files[0]);
     ev.preventDefault();
-    const response = await fetch('http://localhost:4000/post', {
+    const response = await fetch(`${API}/post`, {
       method: 'POST',
       body: data,
       credentials: 'include',

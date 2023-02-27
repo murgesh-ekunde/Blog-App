@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Post from '../components/Post'
+import { API } from '../data';
 
 function IndexPage() {
   const [posts,setPosts] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:4000/post').then(response => {
+    fetch(`${API}/post`).then(response => {
       response.json().then(posts => {
         setPosts(posts);
       });

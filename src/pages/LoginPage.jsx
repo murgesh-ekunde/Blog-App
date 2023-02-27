@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Navigate } from 'react-router-dom'
+import { API } from "../data";
 import { UserContext } from "../UserContext";
  
 function LoginPage() {
@@ -10,7 +11,7 @@ function LoginPage() {
 
   async function login(e){
     e.preventDefault();
-    const response = await fetch('http://localhost:4000/login',{
+    const response = await fetch(`${API}/login`,{
       headers:{"Content-Type":"application/json"},
       method: "POST",
       body:JSON.stringify({username,password}),

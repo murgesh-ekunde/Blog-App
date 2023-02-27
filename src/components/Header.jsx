@@ -7,15 +7,18 @@ import CreateIcon from '@mui/icons-material/Create';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
+import { API } from '../data';
 
 
 function Header() {
   const {setUserInfo, userInfo} = useContext(UserContext)
-  useEffect( ()=>{
-    fetch('http://localhost:4000/profile', {
+    useEffect(()=>{
+   fetch(`${API}/profile`, {
+    method: 'GET',
+    headers:{"Content-Type":"application/json"},
     credentials: 'include',
     }).then(response => {
-     response.json().then(userInfo=>{
+      response.json().then(userInfo=>{
       setUserInfo(userInfo);
      })
     })
@@ -23,7 +26,7 @@ function Header() {
 
   const username = userInfo?.username;
   function logout() {
-    fetch('http://localhost:4000/logout',{
+    fetch(`${API}/logout`,{
       method:"POST",
       credentials:'include',
     }) 
